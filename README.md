@@ -153,5 +153,6 @@ This section details the exact steps I followed and the debugging I did to make 
   More Tuning of Settings: I would spend more time systematically testing different combinations of the tracking parameters (--track_thresh, --match_thresh, --track_buffer). I would try to find the perfect settings that make the IDs as stable as possible for this type of video.
 
   Using a GPU: My current setup runs on the computer's main processor (CPU), which is slow for this kind of task. If I had access to a graphics card (GPU), it would make the processing much faster. This would let me test changes and see results much more quickly, and potentially even handle higher quality video inputs.
+  
 =======
 # Liat_ai_assignment
