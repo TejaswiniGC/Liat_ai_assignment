@@ -1,7 +1,7 @@
 ## Player Re-Identification in Sports Footage
 `Assignment Task Chosen: Option 2: Re-Identification in a Single Feed (15sec_input_720p.mp4)`
 
-This repository contains my attempt to implement a solution for the Liat.ai AI Intern assignment. My main goal was to accurately track players in a given video clip and ensure they keep a consistent ID, even if they temporarily move out of view and reappear.
+This repository contains my attempt to implement a solution for this project. My main goal was to accurately track players in a given video clip and ensure they keep a consistent ID, even if they temporarily move out of view and reappear.
 
 Getting this project set up and running involved a lot of learning and troubleshooting, which was a really valuable experience in practical problem-solving. This README explains all the steps I took, including the challenges I faced and how I worked through them, so that someone else can easily reproduce my setup.
 
