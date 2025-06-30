@@ -5,7 +5,7 @@ This repository contains my attempt to implement a solution for the Liat.ai AI I
 
 Getting this project set up and running involved a lot of learning and troubleshooting, which was a really valuable experience in practical problem-solving. This README explains all the steps I took, including the challenges I faced and how I worked through them, so that someone else can easily reproduce my setup.
 
-# 1. How to Set Up and Run the Code (My Journey to Getting It Working)
+# 1. How to Set Up and Run the Code for getting it to work.
 This section details the exact steps I followed and the debugging I did to make the player re-identification demo functional.
 
 # 1.1 Prerequisites
