@@ -8,55 +8,55 @@ Getting this project set up and running involved a lot of learning and troublesh
 ## 1. How to Set Up and Run the Code for getting it to work.
 This section details the exact steps I followed and the debugging I did to make the player re-identification demo functional.
 
-# 1.1 Prerequisites
+## 1.1 Prerequisites
   Before you start, please make sure you have these tools installed on your Windows computer:
 
   Miniconda or Anaconda: I used this to create and manage my Python environment, which helps keep all the project's specific libraries separate.
 
   Git: You'll need this to download (clone) this project's code.
 
-# 1.2 Clone the Project Code
+## 1.2 Clone the Project Code
   First, open your PowerShell (or Anaconda Prompt). Navigate to the folder where you want to keep this project. Then, use this command to download the code:
 
   git clone https://github.com/ifzhang/ByteTrack.git
   cd ByteTrack
 
-# 1.3 Create and Activate a Clean Python Environment
+## 1.3 Create and Activate a Clean Python Environment
   Next, I created a new Conda environment with a specific Python version (3.10). This helps prevent conflicts with other Python projects you might have.
 
   conda create -n bytetrack_py310 python=3.10 -y
   conda activate bytetrack_py310
 
-# 1.4 Install Core Libraries (My First Set of Challenges)
+## 1.4 Install Core Libraries (My First Set of Challenges)
   Getting the main libraries like PyTorch and onnxruntime installed correctly was one of the first tricky parts. I made sure to install the CPU version of PyTorch since my computer doesn't have a NVIDIA GPU.
 
-# Install PyTorch (CPU version) and TorchVision
+## Install PyTorch (CPU version) and TorchVision
   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
-# Install onnxruntime (This installation caused some initial issues in earlier attempts,
+## Install onnxruntime (This installation caused some initial issues in earlier attempts,
 # but installing it directly here seemed to work better)
   pip install onnxruntime
 
-# 1.5 Install Additional Tracking-Specific Libraries
+## 1.5 Install Additional Tracking-Specific Libraries
   Some other libraries needed for the tracking part of the project required specific installation methods. I found these errors during runtime and fixed them as I went:
 
-# Install pycocotools (This fixed a 'ModuleNotFoundError: No module named 'pycocotools'')
+## Install pycocotools (This fixed a 'ModuleNotFoundError: No module named 'pycocotools'')
   conda install -c conda-forge pycocotools -y
 
-# Install cython_bbox (This fixed another 'ModuleNotFoundError: No module named 'cython_bbox'')
+## Install cython_bbox (This fixed another 'ModuleNotFoundError: No module named 'cython_bbox'')
   pip install cython_bbox
 
-# 1.6 Install Remaining Project Requirements
+## 1.6 Install Remaining Project Requirements
   After handling the more challenging libraries, I installed the rest of the project's requirements listed in the requirements.txt file:
 
   pip install -r requirements.txt --no-cache-dir
 
-# 1.7 Install ByteTrack in "Editable" Mode
+## 1.7 Install ByteTrack in "Editable" Mode
   To make sure Python could find all the project's files and that any small changes I made to the code would apply immediately, I installed the project in "editable" mode:
 
   pip install -e .
 
-# 1.8 Download and Prepare the Player Tracking Model
+## 1.8 Download and Prepare the Player Tracking Model
   The assignment required a pre-trained model. I downloaded the bytetrack_x_mot17.pth.tar checkpoint because I learned it's well-suited for tracking people in videos like the ones from the MOT17 dataset, which seemed very relevant for football players.
 
   Download Command:
@@ -69,7 +69,7 @@ This section details the exact steps I followed and the debugging I did to make 
   Placement: After downloading, I made sure the bytetrack_x_mot17.pth.tar file was placed directly into the main ByteTrack project directory (e.g., C:\Users\tejas\Liat_Track\ByteTrack\).
  (Initial tests showed that the torch.load command was able to directly handle this .tar archive, so I didn't need to manually extract the .pth file first after solving other issues.)
 
-# 1.9 Important Code Adjustments (My Debugging Diary)
+## 1.9 Important Code Adjustments (My Debugging Diary)
   As I worked, I found that I needed to make a few small but very important changes to the ByteTrack code to make it compatible with my environment and the chosen model. These changes were guided by the error messages I received:
 
   Fixing Model Loading in tools/demo_track.py:
@@ -110,7 +110,7 @@ This section details the exact steps I followed and the debugging I did to make 
 
   (This used the standard Python float type, which NumPy handles correctly.)
 
-# 1.10 Running the Demo (Finally Seeing It Work!)
+## 1.10 Running the Demo (Finally Seeing It Work!)
   After all the environment setups and careful code modifications, I could finally run the player re-identification demo.
 
   Setting the OpenMP Environment Variable: This step was important to prevent a common warning (OMP: Error #15) about conflicting  libraries. I ran this command in my PowerShell session before running the main script:
@@ -125,21 +125,21 @@ This section details the exact steps I followed and the debugging I did to make 
 
  The console output showed that the model loaded successfully and started detecting a good number of players in each frame with high confidence, which was a great sign!
 
-# 1.11 Output Location
+## 1.11 Output Location
  Once the script finishes processing the video (it takes some time on CPU), the output video with bounding boxes and tracking IDs will be saved in a new folder, typically found here:
 ./YOLOX_outputs/yolox_x_mix_det/track_vis/[timestamp]/15sec_input_720p.mp4
 
 `2. What Remains and How I Would Proceed (Since My Solution is Incomplete)`
   While I successfully got the system to detect players and perform basic tracking, fully consistent player re-identification, especially in complex scenarios, is still a challenge that needs more work beyond what I could achieve within the assignment's timeframe.
 
-# 2.1 My Current Challenges with Re-Identification
+## 2.1 My Current Challenges with Re-Identification
   The main issues I observed with ID consistency are:
 
   ID Swaps When Players Cross: When players move very close to each other or cross paths, their assigned IDs sometimes get swapped.
 
   New IDs for Reappearing Players: If a player leaves the camera's view for a while and then comes back into the frame, they are usually assigned a completely new ID instead of their original one.
 
-# 2.2 My Future Plans / How I Would Continue if I Had More Time
+## 2.2 My Future Plans / How I Would Continue if I Had More Time
   If I had more time and resources, here's how I would try to improve the re-identification:
 
   Adding Appearance Information: The current tracking relies mostly on where a player is and how they move. For better re-identification, especially after long occlusions, the system needs to "remember" what each player looks like. I would investigate:
